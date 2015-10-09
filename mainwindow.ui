@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>626</width>
+    <height>407</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Keithley Remote Control</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QLCDNumber" name="lcdNumber">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 64, 0);
+border-color:rgb(170, 0, 0);
+background-color:rgb(221, 232, 2);
+font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
+    </property>
+    <property name="value" stdset="0">
+     <double>1.388290000000000</double>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcdNumber_2">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>30</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 64, 0);
+border-color:rgb(170, 0, 0);
+background-color:rgb(221, 232, 2);
+font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
+    </property>
+    <property name="value" stdset="0">
+     <double>1.388290000000000</double>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcdNumber_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>150</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 64, 0);
+border-color:rgb(170, 0, 0);
+background-color:rgb(221, 232, 2);
+font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
+    </property>
+    <property name="value" stdset="0">
+     <double>1.388290000000000</double>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>626</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuConnect">
+    <property name="title">
+     <string>Connect</string>
+    </property>
+    <addaction name="actionSerial"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuSetup">
+    <property name="title">
+     <string>Setup</string>
+    </property>
+    <addaction name="actionModel"/>
+   </widget>
+   <widget class="QMenu" name="menuFunction">
+    <property name="title">
+     <string>Function</string>
+    </property>
+    <addaction name="actionBias_Set"/>
+    <addaction name="actionSwap"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuSetup"/>
+   <addaction name="menuFunction"/>
+   <addaction name="menuConnect"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionModel">
+   <property name="text">
+    <string>Model</string>
+   </property>
+  </action>
+  <action name="actionSerial">
+   <property name="text">
+    <string>Serial</string>
+   </property>
+  </action>
+  <action name="actionBias_Set">
+   <property name="text">
+    <string>Bias Set</string>
+   </property>
+  </action>
+  <action name="actionSwap">
+   <property name="text">
+    <string>Sweep</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
