@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "mythread.h"
 
 #include "serialdialog.h"
 #include "aboutdialog.h"
@@ -25,13 +26,20 @@ public:
     ModelDialog modeldialog;
     BiasDialog biasdialog;
 
+public slots:
+
+    void SerialDialog_PB_connect_clicked();
+    void SerialDialog_PB_close_clicked();
+    void BiasDialog_PB_BiasUpdate_clicked();
+
+    void dataReceive(QByteArray data);
+
 private slots:
 
 
     void on_actionAbout_triggered();
 
     void on_actionSerial_triggered();
-
 
     void on_actionExit_triggered();
 
@@ -41,6 +49,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    MyThread *mythread;
 };
 
 #endif // MAINWINDOW_H

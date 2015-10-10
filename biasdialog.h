@@ -15,6 +15,14 @@ public:
     explicit BiasDialog(QWidget *parent = 0);
     ~BiasDialog();
 
+    double getBias();
+
+signals:
+    void Bias_Update();
+
+private slots:
+    void on_PB_BiasUpdate_clicked();
+
 private:
     Ui::BiasDialog *ui;
 };

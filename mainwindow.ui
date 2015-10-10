@@ -38,7 +38,7 @@ font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
      <rect>
       <x>270</x>
       <y>30</y>
-      <width>201</width>
+      <width>321</width>
       <height>71</height>
      </rect>
     </property>
@@ -47,6 +47,9 @@ font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
 border-color:rgb(170, 0, 0);
 background-color:rgb(221, 232, 2);
 font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
+    </property>
+    <property name="digitCount">
+     <number>15</number>
     </property>
     <property name="value" stdset="0">
      <double>1.388290000000000</double>

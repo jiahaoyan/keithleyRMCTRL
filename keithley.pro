@@ -17,21 +17,21 @@ SOURCES += main.cpp\
     serialdialog.cpp \
     aboutdialog.cpp \
     modeldialog.cpp \
-    include/mythread.cpp \
     include/qextserialbase.cpp \
     include/qextserialport.cpp \
     include/win_qextserialport.cpp \
-    biasdialog.cpp
+    biasdialog.cpp \
+    mythread.cpp
 
 HEADERS  += mainwindow.h \
     serialdialog.h \
     aboutdialog.h \
     modeldialog.h \
-    include/mythread.h \
     include/qextserialbase.h \
     include/qextserialport.h \
     include/win_qextserialport.h \
-    biasdialog.h
+    biasdialog.h \
+    mythread.h
 
 FORMS    += mainwindow.ui \
     serialdialog.ui \
