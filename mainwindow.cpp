@@ -31,7 +31,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::dataReceive(QByteArray data)
 {
-    ui->lcdNumber_2->display(QString(data));
+    ui->TB_data->insertPlainText(QString(data));
+    QByteArray voltage = data.left(13);
+    data.remove(0,14);
+    QByteArray current = data.left(13);
+    ui->LCD_voltage->display(QString(voltage));
+    ui->LCD_current->display(QString(current));
+
 }
 
 
@@ -68,16 +74,11 @@ void MainWindow::on_actionBias_Set_triggered()
 
 void MainWindow::SerialDialog_PB_connect_clicked()
 {
-    ui->lcdNumber->display(serialdialog.getPort());
-
     mythread = new MyThread(serialdialog.getPort(), serialdialog.getPortSettings(), this);
     connect(mythread,SIGNAL(serialFinished(QByteArray)),this,SLOT(dataReceive(QByteArray)));
     mythread->start();
 
-    //connect(mythread,SIGNAL(serialFinished(QByteArray)),this,SLOT(ReadDate(QByteArray)));
-
     ui->menuFunction->setDisabled(false);
-
 }
 void MainWindow::SerialDialog_PB_close_clicked()
 {
@@ -94,12 +95,20 @@ void MainWindow::BiasDialog_PB_BiasUpdate_clicked()
 {
     QString bias;
     bias = QString("%1").arg(biasdialog.getBias());
-    mythread->msg = ":SOUR:VOLT:IMM ";
-    mythread->msg.append(bias);
-    mythread->msg.append("\r\n");
-    mythread->msg.append("*RST\r\n");
+    mythread->msg = "*RST\r\n";
     mythread->msg.append(":SOUR:FUNC VOLT\r\n");
     mythread->msg.append(":SOUR:VOLT:MODE FIXED\r\n");
+    mythread->msg.append(":SOUR:VOLT:MODE FIXED\r\n");
+    mythread->msg.append(":SOUR:VOLT:RANG 200\r\n");
+    mythread->msg.append(":SOUR:VOLT:LEV 0\r\n");
+    mythread->msg.append(":SENS:CURR:PROT 10E-5\r\n");
+    mythread->msg.append(":SENS:FUNC \"CURR\"\r\n");
+    mythread->msg.append(":SENS:CURR:RANG 10E-5\r\n");
+    mythread->msg.append(":OUTP ON\r\n");
+    mythread->msg.append(":SOUR:VOLT:IMM ");
+    mythread->msg.append(bias);
+    mythread->msg.append("\r\n");
+
 /*
     myCom->write(QByteArray("*RST\r\n"));
 
@@ -113,6 +122,6 @@ void MainWindow::BiasDialog_PB_BiasUpdate_clicked()
     myCom->write(QByteArray(":SENS:CURR:RANG 10E-5\r\n"));
     myCom->write(QByteArray(":OUTP ON\r\n"));
     */
-
+    mythread->read = false;
     mythread->write = true;
 }

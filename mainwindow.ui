@@ -7,38 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>626</width>
-    <height>407</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Keithley Remote Control</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLCDNumber" name="lcdNumber">
+   <widget class="QLCDNumber" name="LCD_voltage">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>30</y>
-      <width>201</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:rgb(255, 64, 0);
-border-color:rgb(170, 0, 0);
-background-color:rgb(221, 232, 2);
-font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
-    </property>
-    <property name="value" stdset="0">
-     <double>1.388290000000000</double>
-    </property>
-   </widget>
-   <widget class="QLCDNumber" name="lcdNumber_2">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>30</y>
-      <width>321</width>
+      <width>411</width>
       <height>71</height>
      </rect>
     </property>
@@ -52,14 +33,36 @@ font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
      <number>15</number>
     </property>
     <property name="value" stdset="0">
-     <double>1.388290000000000</double>
+     <double>0.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="LCD_current">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>120</y>
+      <width>411</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 64, 0);
+border-color:rgb(170, 0, 0);
+background-color:rgb(221, 232, 2);
+font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
+    </property>
+    <property name="digitCount">
+     <number>15</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>0.000000000000000</double>
     </property>
    </widget>
    <widget class="QLCDNumber" name="lcdNumber_3">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>150</y>
+      <x>80</x>
+      <y>220</y>
       <width>201</width>
       <height>71</height>
      </rect>
@@ -72,6 +75,16 @@ font: italic bold 10pt &quot;Monotype Corsiva&quot;;</string>
     </property>
     <property name="value" stdset="0">
      <double>1.388290000000000</double>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="TB_data">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>330</y>
+      <width>421</width>
+      <height>192</height>
+     </rect>
     </property>
    </widget>
   </widget>

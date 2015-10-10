@@ -26,6 +26,7 @@ public:
 public:
     PortSettings portsettings;
     QString msg;
+    bool read;
     bool write;
 
 signals:
