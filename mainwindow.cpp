@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "math.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -31,13 +32,102 @@ MainWindow::~MainWindow()
 
 void MainWindow::dataReceive(QByteArray data)
 {
-    ui->TB_data->insertPlainText(QString(data));
-    QByteArray voltage = data.left(13);
+    QByteArray voltage,current,resistance,time,status;// Raw data
+    voltage = data.left(13);
     data.remove(0,14);
-    QByteArray current = data.left(13);
-    ui->LCD_voltage->display(QString(voltage));
-    ui->LCD_current->display(QString(current));
+    current = data.left(13);
+    data.remove(0,14);
+    resistance = data.left(13);
+    data.remove(0,14);
+    time = data.left(13);
+    data.remove(0,14);
+    status = data.left(13);
 
+    Number voltageTR,currentTR,resistanceTR,timeTR,statusTR;//Transferred data
+    voltageTR = dataTransfer(voltage);
+    currentTR = dataTransfer(current);
+    resistanceTR = dataTransfer(resistance);
+
+
+    if(voltageTR.simple)
+    {
+        ui->L_voltage->setText(voltageTR.numbersimple.c);
+        ui->LCD_voltage->display(QString("%1").arg(voltageTR.numbersimple.base,0,'f',3));
+    }
+    else
+    {
+        float number;
+        number = voltageTR.exponent.base * pow(10.0,voltageTR.exponent.power);
+        ui->L_voltage->setText(" ");
+        ui->LCD_voltage->display(QString("%1").arg(number,0,'E',2));
+    }
+
+    ui->L_current->setText(currentTR.numbersimple.c);
+    ui->LCD_current->display(QString("%1").arg(currentTR.numbersimple.base,0,'f',3));
+
+}
+
+Number MainWindow::dataTransfer(QByteArray data)
+{
+    Number dataTR;
+    bool ok;
+
+    dataTR.exponent.power = data.right(3).toInt(&ok, 10);
+    data.remove(9,4);
+    dataTR.exponent.base = data.left(9).toFloat(&ok);
+
+    if(dataTR.exponent.power>=-18 && dataTR.exponent.power <15)
+    {
+        dataTR.simple = true;
+        int quotient, remainder; // 商 , 余数
+        int powerTMP;// 临时变量,取决于dataTR.exponent.power的正负
+        if(dataTR.exponent.power >= 0)
+            powerTMP = dataTR.exponent.power;
+        else
+            powerTMP = dataTR.exponent.power - 2;
+
+        quotient = powerTMP / 3;
+        remainder = powerTMP % 3;
+        switch(quotient)
+        {
+            case -6:
+                dataTR.numbersimple.c = "a"; break;
+            case -5:
+                dataTR.numbersimple.c = "f"; break;
+            case -4:
+                dataTR.numbersimple.c = "p"; break;
+            case -3:
+                dataTR.numbersimple.c = "n"; break;
+            case -2:
+                dataTR.numbersimple.c = "u"; break;
+            case -1:
+                dataTR.numbersimple.c = "m"; break;
+            case 0:
+                dataTR.numbersimple.c = " "; break;
+            case 1:
+                dataTR.numbersimple.c = "K"; break;
+            case 2:
+                dataTR.numbersimple.c = "M"; break;
+            case 3:
+                dataTR.numbersimple.c = "G"; break;
+            case 4:
+                dataTR.numbersimple.c = "T"; break;
+            default:
+                dataTR.numbersimple.c = "?"; break;
+        }
+
+        if(dataTR.exponent.power >= 0)
+            dataTR.numbersimple.base = dataTR.exponent.base * pow(10.0,remainder);
+        else
+            dataTR.numbersimple.base = dataTR.exponent.base * pow(10.0,remainder+2);
+    }
+    else
+    {
+        dataTR.simple = false;
+    }
+
+
+    return dataTR;
 }
 
 
@@ -98,16 +188,21 @@ void MainWindow::BiasDialog_PB_BiasUpdate_clicked()
     mythread->msg = "*RST\r\n";
     mythread->msg.append(":SOUR:FUNC VOLT\r\n");
     mythread->msg.append(":SOUR:VOLT:MODE FIXED\r\n");
-    mythread->msg.append(":SOUR:VOLT:MODE FIXED\r\n");
-    mythread->msg.append(":SOUR:VOLT:RANG 200\r\n");
+    mythread->msg.append(":SOUR:VOLT:RANG:AUTO ON\r\n");
     mythread->msg.append(":SOUR:VOLT:LEV 0\r\n");
     mythread->msg.append(":SENS:CURR:PROT 10E-5\r\n");
     mythread->msg.append(":SENS:FUNC \"CURR\"\r\n");
-    mythread->msg.append(":SENS:CURR:RANG 10E-5\r\n");
+    mythread->msg.append(":SENS:CURR:RANG:AUTO ON\r\n");
     mythread->msg.append(":OUTP ON\r\n");
-    mythread->msg.append(":SOUR:VOLT:IMM ");
+    //mythread->msg.append(":SOUR:VOLT:IMM ");
+    mythread->msg.append(":SOUR:VOLT:LEV ");
     mythread->msg.append(bias);
     mythread->msg.append("\r\n");
+
+    mythread->read = false;
+    mythread->write = true;
+}
+
 
 /*
     myCom->write(QByteArray("*RST\r\n"));
@@ -122,6 +217,3 @@ void MainWindow::BiasDialog_PB_BiasUpdate_clicked()
     myCom->write(QByteArray(":SENS:CURR:RANG 10E-5\r\n"));
     myCom->write(QByteArray(":OUTP ON\r\n"));
     */
-    mythread->read = false;
-    mythread->write = true;
-}

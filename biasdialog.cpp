@@ -23,3 +23,8 @@ void BiasDialog::on_PB_BiasUpdate_clicked()
 {
     emit Bias_Update();
 }
+
+void BiasDialog::on_DSB_biasStep_editingFinished()
+{
+    ui->DSB_bias->setSingleStep(ui->DSB_biasStep->value());
+}

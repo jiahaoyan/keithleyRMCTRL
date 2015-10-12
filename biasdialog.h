@@ -23,6 +23,8 @@ signals:
 private slots:
     void on_PB_BiasUpdate_clicked();
 
+    void on_DSB_biasStep_editingFinished();
+
 private:
     Ui::BiasDialog *ui;
 };

@@ -6,20 +6,43 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>126</width>
-    <height>69</height>
+    <width>311</width>
+    <height>156</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Bias Set</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="0">
+    <widget class="QPushButton" name="PB_BiasUpdate">
+     <property name="styleSheet">
+      <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Update</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Bias:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
       <widget class="QDoubleSpinBox" name="DSB_bias">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;</string>
+       </property>
        <property name="decimals">
-        <number>3</number>
+        <number>6</number>
        </property>
        <property name="minimum">
         <double>-200.000000000000000</double>
@@ -32,21 +55,56 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="2">
       <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;</string>
+       </property>
+       <property name="text">
+        <string>V</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Step:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QDoubleSpinBox" name="DSB_biasStep">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;</string>
+       </property>
+       <property name="decimals">
+        <number>6</number>
+       </property>
+       <property name="minimum">
+        <double>0.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>100.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>1.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_4">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;</string>
+       </property>
        <property name="text">
         <string>V</string>
        </property>
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="PB_BiasUpdate">
-     <property name="text">
-      <string>Update</string>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

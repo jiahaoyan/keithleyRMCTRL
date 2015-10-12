@@ -14,6 +14,25 @@ namespace Ui {
 class MainWindow;
 }
 
+typedef struct Exponent
+{
+    float base;
+    int power;
+}Exponent;
+
+typedef struct NumberSimple
+{
+    float base;
+    QString c; //m,u,n,p,f,k,M,G,T
+}NumberSimple;
+
+typedef struct Number
+{
+    Exponent exponent;
+    NumberSimple numbersimple;//简化的表示方法
+    bool simple; //是否可以用 n,u,p等表示
+}Number;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -33,6 +52,7 @@ public slots:
     void BiasDialog_PB_BiasUpdate_clicked();
 
     void dataReceive(QByteArray data);
+    Number dataTransfer(QByteArray data);
 
 private slots:
 
